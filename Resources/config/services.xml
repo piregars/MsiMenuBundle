@@ -8,13 +8,38 @@
     <parameters>
         <parameter key="msi_menu.example.class">Msi\Bundle\MenuBundle\Example</parameter>
     </parameters>
-
+    -->
     <services>
-        <service id="msi_menu.example" class="%msi_menu.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <!-- Root Manager -->
+        <service id="msi_menu.root_manager" class="Msi\Bundle\AdminBundle\Entity\ModelManager">
+            <argument type="service" id="msi_admin.entity_manager" />
+            <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
+            <argument type="service" id="session" />
+        </service>
+        <!-- Root Admin -->
+        <service id="msi_menu_root_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\RootAdmin">
+            <argument />
+            <argument>MsiMenuBundle</argument>
+            <call method="setModelManager">
+                <argument type="service" id="msi_menu.root_manager" />
+            </call>
+            <tag name="msi.admin"></tag>
+        </service>
+
+        <!-- Node Manager -->
+        <service id="msi_menu.node_manager" class="Msi\Bundle\AdminBundle\Entity\ModelManager">
+            <argument type="service" id="msi_admin.entity_manager" />
+            <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
+            <argument type="service" id="session" />
+        </service>
+        <!-- Node Admin -->
+        <service id="msi_menu_node_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\NodeAdmin">
+            <argument />
+            <argument>MsiMenuBundle</argument>
+            <call method="setModelManager">
+                <argument type="service" id="msi_menu.node_manager" />
+            </call>
+            <tag name="msi.admin"></tag>
         </service>
     </services>
-    -->
 </container>
