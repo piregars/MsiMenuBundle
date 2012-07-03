@@ -114,7 +114,12 @@ class Menu implements NodeInterface
 
     public function getTranslations()
     {
-        return $this->translations;
+        $fixedTranslations = new ArrayCollection();
+        foreach ($this->translations as $t) {
+            $fixedTranslations[$t->getLocale()] = $t;
+        }
+
+        return $fixedTranslations;
     }
 
     public function getTranslation()
