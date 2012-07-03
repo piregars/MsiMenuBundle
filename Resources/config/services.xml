@@ -11,7 +11,7 @@
     -->
     <services>
         <!-- Root Manager -->
-        <service id="msi_menu.root_manager" class="Msi\Bundle\AdminBundle\Entity\ModelManager">
+        <service id="msi_menu.root_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
             <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
             <argument type="service" id="session" />
@@ -23,11 +23,14 @@
             <call method="setModelManager">
                 <argument type="service" id="msi_menu.root_manager" />
             </call>
+            <call method="setChild">
+                <argument type="service" id="msi_menu_node_admin" />
+            </call>
             <tag name="msi.admin"></tag>
         </service>
 
         <!-- Node Manager -->
-        <service id="msi_menu.node_manager" class="Msi\Bundle\AdminBundle\Entity\ModelManager">
+        <service id="msi_menu.node_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
             <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
             <argument type="service" id="session" />
@@ -38,6 +41,9 @@
             <argument>MsiMenuBundle</argument>
             <call method="setModelManager">
                 <argument type="service" id="msi_menu.node_manager" />
+            </call>
+            <call method="setParent">
+                <argument type="service" id="msi_menu_root_admin" />
             </call>
             <tag name="msi.admin"></tag>
         </service>

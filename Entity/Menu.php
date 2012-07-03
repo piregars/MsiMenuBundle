@@ -5,13 +5,15 @@ namespace Msi\Bundle\MenuBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use Knp\Menu\NodeInterface;
+
 /**
  * @ORM\Table(name="menu")
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * @Gedmo\Tree(type="nested")
  * @ORM\HasLifecycleCallbacks
  */
-class Menu implements \Knp\Menu\NodeInterface
+class Menu implements NodeInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -27,27 +29,27 @@ class Menu implements \Knp\Menu\NodeInterface
 
     /**
      * @Gedmo\TreeLevel
-     * @ORM\Column(name="lvl", type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $lvl;
 
     /**
      * @Gedmo\TreeLeft
-     * @ORM\Column(name="lft", type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $lft;
 
     /**
      * @Gedmo\TreeRight
-     * @ORM\Column(name="rgt", type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $rgt;
 
     /**
      * @Gedmo\TreeRoot
-     * @ORM\Column(name="root", type="integer")
+     * @ORM\Column(type="integer")
      */
-    protected $root;
+    protected $menu;
 
     /**
      * @Gedmo\TreeParent
@@ -60,15 +62,6 @@ class Menu implements \Knp\Menu\NodeInterface
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
-    public function getChildren() {
-        $childNodes = array();
-        foreach ($this->children as $child) {
-            if ($child->getEnabled() != false)
-                $childNodes[] = $child;
-        }
-
-        return $childNodes;
-    }
 
     /**
      * @ORM\Column(nullable="true")
@@ -79,6 +72,11 @@ class Menu implements \Knp\Menu\NodeInterface
      * @ORM\Column(type="boolean")
      */
     protected $enabled;
+
+    public function __construct()
+    {
+        $this->enabled = false;
+    }
 
     public function getOptions()
     {
@@ -93,6 +91,81 @@ class Menu implements \Knp\Menu\NodeInterface
             $options['attributes'] = array('class' => 'nav');
 
         return $options;
+    }
+
+    public function getChildren() {
+        $childNodes = array();
+        foreach ($this->children as $child) {
+            if ($child->getEnabled() != false)
+                $childNodes[] = $child;
+        }
+
+        return $childNodes;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    public function setMenu($menu)
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    public function setRoute($route)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function __toString()

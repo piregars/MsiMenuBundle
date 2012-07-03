@@ -1,6 +1,6 @@
 <?php
 
-namespace Msi\Bundle\AdminBundle\Listener;
+namespace Msi\Bundle\MenuBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
