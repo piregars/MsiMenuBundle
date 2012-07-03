@@ -25,6 +25,11 @@ class MenuTranslation
     protected $name;
 
     /**
+     * @ORM\Column(nullable="true")
+     */
+    protected $route;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Menu", inversedBy="translations")
      */
     protected $object;
@@ -59,6 +64,18 @@ class MenuTranslation
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    public function setRoute($route)
+    {
+        $this->route = $route;
 
         return $this;
     }

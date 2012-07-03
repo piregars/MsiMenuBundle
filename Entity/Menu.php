@@ -61,11 +61,6 @@ class Menu implements NodeInterface
     protected $children;
 
     /**
-     * @ORM\Column(nullable="true")
-     */
-    protected $route;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     protected $enabled;
@@ -254,18 +249,6 @@ class Menu implements NodeInterface
     public function setMenu($menu)
     {
         $this->menu = $menu;
-
-        return $this;
-    }
-
-    public function getRoute()
-    {
-        return $this->route;
-    }
-
-    public function setRoute($route)
-    {
-        $this->route = $route;
 
         return $this;
     }

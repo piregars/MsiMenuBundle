@@ -11,6 +11,7 @@ class MenuTranslationType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('route')
         ;
     }
 
