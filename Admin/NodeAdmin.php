@@ -14,8 +14,15 @@ class NodeAdmin extends Admin
     public function buildTable($builder)
     {
         $builder
-            ->add('name')
-            ->add('', 'action')
+            ->add('name', 'menu')
+            ->add('lvl')
+            ->add('lft')
+            ->add('rgt')
+            ->add('menu', 'text', array('label' => 'root_id'))
+            ->add('', 'action', array('actions' => array(
+                'Promote' => 'promote',
+                'Demote' => 'demote',
+            )))
         ;
     }
 

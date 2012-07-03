@@ -139,6 +139,42 @@ class Menu implements NodeInterface
         return $this;
     }
 
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+
+        return $this;
+    }
+
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    public function setLft($lft)
+    {
+        $this->lft = $lft;
+
+        return $this;
+    }
+
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+
+        return $this;
+    }
+
     public function getMenu()
     {
         return $this->menu;
