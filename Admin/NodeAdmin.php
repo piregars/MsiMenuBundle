@@ -40,12 +40,8 @@ class NodeAdmin extends Admin
             ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new MenuTranslationType(), 'options' => array(
                 'attr' => array('class' => 'lead bold'),
             )))
-            ->add('route', 'text', array('required' => true))
             ->add('parent', 'entity', array(
                 'class' => 'Msi\Bundle\MenuBundle\Entity\Menu',
-                'expanded' => false,
-                'multiple' => false,
-                'required' => true,
                 'choices' => $choices,
             ))
         ;
