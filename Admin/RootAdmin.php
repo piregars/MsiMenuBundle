@@ -17,6 +17,7 @@ class RootAdmin extends Admin
             ->add('id')
             ->add('enabled', 'logical')
             ->add('name')
+            ->add('updatedAt', 'date')
             ->add('', 'action')
         ;
     }
