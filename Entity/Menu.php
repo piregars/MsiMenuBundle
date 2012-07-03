@@ -4,6 +4,8 @@ namespace Msi\Bundle\MenuBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Knp\Menu\NodeInterface;
 
@@ -22,10 +24,7 @@ class Menu implements NodeInterface
      */
     protected $id;
 
-    /**
-     * @ORM\Column
-     */
-    protected $name;
+
 
     /**
      * @Gedmo\TreeLevel
@@ -83,11 +82,17 @@ class Menu implements NodeInterface
      */
     protected $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="MenuTranslation", mappedBy="object", cascade={"persist", "remove"})
+     */
+    protected $translations;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->enabled = false;
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -96,6 +101,25 @@ class Menu implements NodeInterface
     public function preUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    public function addTranslation($translation)
+    {
+        $this->translations[] = $translation;
+
+        $translation->setObject($this);
+
+        return $this;
+    }
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function getTranslation()
+    {
+        return $this->translations[0];
     }
 
     public function getCreatedAt()
@@ -149,14 +173,7 @@ class Menu implements NodeInterface
 
     public function getName()
     {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
+        return $this->getTranslation()->getName();
     }
 
     public function getParent()
@@ -250,6 +267,6 @@ class Menu implements NodeInterface
 
     public function __toString()
     {
-        return $this->name;
+        return $this->getTranslation()->getName();
     }
 }

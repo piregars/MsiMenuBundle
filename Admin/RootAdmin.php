@@ -3,6 +3,7 @@
 namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
+use Msi\Bundle\MenuBundle\Form\Type\MenuTranslationType;
 
 class RootAdmin extends Admin
 {
@@ -25,7 +26,9 @@ class RootAdmin extends Admin
     public function buildForm($builder)
     {
         $builder
-            ->add('name')
+            ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new MenuTranslationType(), 'options' => array(
+                'attr' => array('class' => 'lead bold'),
+            )))
         ;
     }
 }
