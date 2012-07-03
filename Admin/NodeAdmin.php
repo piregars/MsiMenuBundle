@@ -3,7 +3,7 @@
 namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
-use Msi\Bundle\MenuBundle\Form\Type\MenuTranslationType;
+use Msi\Bundle\MenuBundle\Form\Type\NodeTranslationType;
 
 class NodeAdmin extends Admin
 {
@@ -37,7 +37,7 @@ class NodeAdmin extends Admin
         $choices = $qb->getQuery()->execute();
 
         $builder
-            ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new MenuTranslationType(), 'options' => array(
+            ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new NodeTranslationType(), 'options' => array(
                 'attr' => array('class' => 'lead bold'),
             )))
             ->add('parent', 'entity', array(

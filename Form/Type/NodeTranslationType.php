@@ -5,7 +5,7 @@ namespace Msi\Bundle\MenuBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class MenuTranslationType extends AbstractType
+class NodeTranslationType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -17,6 +17,6 @@ class MenuTranslationType extends AbstractType
 
     public function getName()
     {
-        return 'menu_translation';
+        return 'node_translation';
     }
 }
