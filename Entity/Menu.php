@@ -24,8 +24,6 @@ class Menu implements NodeInterface
      */
     protected $id;
 
-
-
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(type="integer")
@@ -108,6 +106,13 @@ class Menu implements NodeInterface
         $this->translations[] = $translation;
 
         $translation->setObject($this);
+
+        return $this;
+    }
+
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
 
         return $this;
     }
