@@ -20,8 +20,8 @@ class NodeAdmin extends Admin
             ->add('rgt')
             ->add('menu', 'text', array('label' => 'root_id'))
             ->add('', 'action', array('actions' => array(
-                'Promote' => 'promote',
-                'Demote' => 'demote',
+                '<i class="icon-arrow-up"></i>' => 'promote',
+                '<i class="icon-arrow-down"></i>' => 'demote',
             )))
         ;
     }
