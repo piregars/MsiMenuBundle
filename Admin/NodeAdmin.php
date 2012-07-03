@@ -15,10 +15,7 @@ class NodeAdmin extends Admin
     {
         $builder
             ->add('name', 'menu')
-            ->add('lvl')
-            ->add('lft')
-            ->add('rgt')
-            ->add('menu', 'text', array('label' => 'root_id'))
+            ->add('route')
             ->add('', 'action', array('actions' => array(
                 '<i class="icon-arrow-up"></i>' => 'promote',
                 '<i class="icon-arrow-down"></i>' => 'demote',
