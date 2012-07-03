@@ -28,7 +28,12 @@ class NodeAdmin extends Admin
 
     public function buildForm($builder)
     {
-        $choices = $this->getModelManager()->findBy(array('a.menu' => $this->container->get('request')->query->get('parentId')), array('a.children' => 'c'))->getQuery()->execute();
+        $qb = $this->getModelManager()->findBy(array('a.menu' => $this->container->get('request')->query->get('parentId')), array('a.children' => 'c'), array('a.lvl' => 'ASC', 'a.lft' => 'ASC'));
+        if ($this->object->getId()) {
+            $qb->andWhere('a.id != :match')->setParameter('match', $this->object->getId());
+        }
+
+        $choices = $qb->getQuery()->execute();
 
         $builder
             ->add('name')
