@@ -80,6 +80,11 @@ class Menu implements NodeInterface
      */
     protected $translations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Msi\Bundle\PageBundle\Entity\Page")
+     */
+    protected $page;
+
     protected $options = array();
 
     public function __construct()
@@ -97,6 +102,18 @@ class Menu implements NodeInterface
     public function preUpdate()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function setPage($page)
+    {
+        $this->page = $page;
+
+        return $this;
     }
 
     public function addTranslation($translation)
@@ -117,12 +134,7 @@ class Menu implements NodeInterface
 
     public function getTranslations()
     {
-        $fixedTranslations = new ArrayCollection();
-        foreach ($this->translations as $t) {
-            $fixedTranslations[$t->getLocale()] = $t;
-        }
-
-        return $fixedTranslations;
+        return $this->translations->first();
     }
 
     public function getTranslation()
@@ -156,10 +168,15 @@ class Menu implements NodeInterface
 
     public function getOptions()
     {
-        if ($this->getTranslation()->getRoute() && preg_match('#^@#', $this->getTranslation()->getRoute())) {
+        if ($this->page) {
+            $this->options['route'] = 'msi_page_page_show';
+            $this->options['routeParameters'] = array('slug' => $this->page->getTranslation()->getSlug());
+        } else if (preg_match('#^@#', $this->getTranslation()->getRoute())) {
             $this->options['route'] = substr($this->getTranslation()->getRoute(), 1);
         } else if ($this->getTranslation()->getRoute()) {
             $this->options['uri'] = $this->getTranslation()->getRoute();
+        } else {
+            $this->options['uri'] = '#';
         }
 
         return $this->options;
@@ -179,13 +196,7 @@ class Menu implements NodeInterface
 
     public function getChildren()
     {
-        $tmp = new ArrayCollection();
-        foreach ($this->children as $child) {
-            if ($child->getEnabled()) {
-                $tmp->add($child);
-            }
-        }
-        return $tmp;
+        return $this->children;
     }
 
     public function getName()
