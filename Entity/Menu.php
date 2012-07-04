@@ -80,6 +80,8 @@ class Menu implements NodeInterface
      */
     protected $translations;
 
+    protected $options = array();
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -153,23 +155,24 @@ class Menu implements NodeInterface
 
     public function getOptions()
     {
-        $options = array();
+        if ($this->getTranslation()->getRoute() && preg_match('#^@#', $this->getTranslation()->getRoute())) {
+            $this->options['route'] = substr($this->getTranslation()->getRoute(), 1);
+        } else if ($this->getTranslation()->getRoute()) {
+            $this->options['uri'] = $this->getTranslation()->getRoute();
+        }
 
-        if (preg_match('#^@#', $this->route))
-            $options['route'] = substr($this->route, 1);
-        else
-            $options['uri'] = $this->route;
+        return $this->options;
+    }
 
-        if ($this->lvl === 0)
-            $options['attributes'] = array('class' => 'nav');
-
-        return $options;
+    public function setOption($k ,$v)
+    {
+        $this->options[$k] = $v;
     }
 
     public function getChildren() {
         $childNodes = array();
         foreach ($this->children as $child) {
-            if ($child->getEnabled() != false)
+            if ($child->getEnabled())
                 $childNodes[] = $child;
         }
 
