@@ -134,12 +134,12 @@ class Menu implements NodeInterface
 
     public function getTranslations()
     {
-        return $this->translations->first();
+        return $this->translations;
     }
 
     public function getTranslation()
     {
-        return $this->translations[0];
+        return $this->translations->first();
     }
 
     public function getCreatedAt()
