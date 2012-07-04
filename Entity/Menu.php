@@ -88,6 +88,7 @@ class Menu implements NodeInterface
         $this->updatedAt = new \DateTime();
         $this->enabled = false;
         $this->translations = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -169,14 +170,22 @@ class Menu implements NodeInterface
         $this->options[$k] = $v;
     }
 
-    public function getChildren() {
-        $childNodes = array();
-        foreach ($this->children as $child) {
-            if ($child->getEnabled())
-                $childNodes[] = $child;
-        }
+    public function addChild($child)
+    {
+        $this->children[] = $child;
 
-        return $childNodes;
+        return $this;
+    }
+
+    public function getChildren()
+    {
+        $tmp = new ArrayCollection();
+        foreach ($this->children as $child) {
+            if ($child->getEnabled()) {
+                $tmp->add($child);
+            }
+        }
+        return $tmp;
     }
 
     public function getName()
