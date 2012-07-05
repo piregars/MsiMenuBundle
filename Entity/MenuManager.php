@@ -19,6 +19,9 @@ class MenuManager extends ModelManager
 
         $qb->andWhere($orX);
 
+        $qb->andWhere($qb->expr()->eq('ct.locale', ':ctlocale'));
+        $qb->setParameter('ctlocale', $this->session->getLocale());
+
         return $qb->getQuery()->getSingleResult();
     }
 }
