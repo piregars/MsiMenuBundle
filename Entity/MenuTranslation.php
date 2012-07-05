@@ -39,6 +39,11 @@ class MenuTranslation
      */
     protected $locale;
 
+    public function __construct()
+    {
+        $this->route = '#';
+    }
+
     public function getId()
     {
         return $this->id;
