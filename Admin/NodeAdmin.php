@@ -38,7 +38,7 @@ class NodeAdmin extends Admin
 
         $builder
             ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new NodeTranslationType(), 'options' => array(
-                'attr' => array('class' => 'lead bold'),
+                'label' => ' ',
             )))
             ->add('page', 'entity', array('empty_value' => 'Choose a page', 'class' => 'Msi\Bundle\PageBundle\Entity\Page'))
             ->add('parent', 'entity', array(

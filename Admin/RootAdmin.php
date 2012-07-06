@@ -27,7 +27,7 @@ class RootAdmin extends Admin
     {
         $builder
             ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new RootTranslationType(), 'options' => array(
-                'attr' => array('class' => 'lead bold'),
+                'label' => ' ',
             )))
         ;
     }
