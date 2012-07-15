@@ -10,6 +10,7 @@ class RootAdmin extends Admin
     public function configure()
     {
         $this->controller = 'MsiMenuBundle:Root:';
+        $this->setSearchFields(array('name'));
     }
 
     public function buildTable($builder)

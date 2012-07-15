@@ -10,6 +10,7 @@ class NodeAdmin extends Admin
     public function configure()
     {
         $this->controller = 'MsiMenuBundle:Node:';
+        $this->setSearchFields(array('name'));
     }
 
     public function buildTable($builder)
