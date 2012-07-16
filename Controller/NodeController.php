@@ -17,7 +17,7 @@ class NodeController extends CrudController
     }
 
     /**
-     * @Route("/admin/msi_menu_node/promote.html")
+     * @Route("/admin/msi_menu_node/promote.html", name="admin_msi_menu_node_promote")
      */
     public function promoteAction()
     {
@@ -28,7 +28,7 @@ class NodeController extends CrudController
     }
 
     /**
-     * @Route("/admin/msi_menu_node/demote.html")
+     * @Route("/admin/msi_menu_node/demote.html", name="admin_msi_menu_node_demote")
      */
     public function demoteAction()
     {
