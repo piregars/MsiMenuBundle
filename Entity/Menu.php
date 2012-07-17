@@ -169,8 +169,12 @@ class Menu implements NodeInterface
     public function getOptions()
     {
         if ($this->page) {
-            $this->options['route'] = 'msi_page_page_show';
-            $this->options['routeParameters'] = array('slug' => $this->page->getTranslation()->getSlug());
+            if ($this->page->getHome()) {
+                $this->options['route'] = 'homepage';
+            } else {
+                $this->options['route'] = 'msi_page_page_show';
+                $this->options['routeParameters'] = array('slug' => $this->page->getTranslation()->getSlug());
+            }
         } else if (preg_match('#^@#', $this->getTranslation()->getRoute())) {
             $this->options['route'] = substr($this->getTranslation()->getRoute(), 1);
         } else if ($this->getTranslation()->getRoute()) {
