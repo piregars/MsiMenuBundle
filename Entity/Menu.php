@@ -287,6 +287,6 @@ class Menu implements NodeInterface
 
     public function __toString()
     {
-        return $this->getTranslation()->getName();
+        return $this->getTranslation()->getName() ?: 'n/a';
     }
 }
