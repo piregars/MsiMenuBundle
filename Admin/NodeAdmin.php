@@ -17,7 +17,7 @@ class NodeAdmin extends Admin
     {
         $builder
             ->add('id')
-            ->add('enabled', 'logical')
+            ->add('enabled', 'boolean')
             ->add('name', 'menu')
             ->add('updatedAt', 'date')
             ->add('', 'action', array('actions' => array(

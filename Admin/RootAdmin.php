@@ -17,7 +17,7 @@ class RootAdmin extends Admin
     {
         $builder
             ->add('id')
-            ->add('enabled', 'logical')
+            ->add('enabled', 'boolean')
             ->add('name')
             ->add('updatedAt', 'date')
             ->add('', 'action')
