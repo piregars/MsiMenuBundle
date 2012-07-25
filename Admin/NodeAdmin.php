@@ -19,6 +19,7 @@ class NodeAdmin extends Admin
             ->add('id')
             ->add('enabled', 'boolean')
             ->add('name', 'menu')
+            ->add('route')
             ->add('updatedAt', 'date')
             ->add('', 'action', array('actions' => array(
                 '<i class="icon-arrow-up"></i>' => 'promote',
