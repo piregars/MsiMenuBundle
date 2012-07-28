@@ -22,10 +22,7 @@ class NodeAdmin extends Admin
             ->add('route')
             ->add('page')
             ->add('updatedAt', 'date')
-            ->add('', 'action', array('actions' => array(
-                '<i class="icon-arrow-up"></i>' => 'promote',
-                '<i class="icon-arrow-down"></i>' => 'demote',
-            )))
+            ->add('', 'action', array('tree' => true))
         ;
     }
 
