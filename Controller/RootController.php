@@ -6,7 +6,7 @@ use Msi\Bundle\AdminBundle\Controller\CrudController;
 
 class RootController extends CrudController
 {
-    protected function configureIndexQuery($qb)
+    protected function configureListQuery($qb)
     {
         $qb->andWhere('a.lvl = :lvl')->setParameter('lvl', 0);
     }

@@ -36,7 +36,7 @@ class NodeAdmin extends Admin
         $choices = $qb->getQuery()->execute();
 
         $builder
-            ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new NodeTranslationType(), 'options' => array(
+            ->add('translations', 'collection', array('label' => ' ', 'type' => new NodeTranslationType(), 'options' => array(
                 'label' => ' ',
             )))
             ->add('page', 'entity', array('empty_value' => 'Choose a page', 'class' => 'Msi\Bundle\PageBundle\Entity\Page'))

@@ -27,7 +27,7 @@ class RootAdmin extends Admin
     public function buildForm($builder)
     {
         $builder
-            ->add('translations', 'collection', array('attr' => array('class' => 'lead bold'), 'type' => new RootTranslationType(), 'options' => array(
+            ->add('translations', 'collection', array('label' => ' ', 'type' => new RootTranslationType(), 'options' => array(
                 'label' => ' ',
             )))
         ;
