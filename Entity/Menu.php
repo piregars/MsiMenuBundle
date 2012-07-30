@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Msi\Bundle\AdminBundle\Entity\Translatable;
 use Knp\Menu\NodeInterface;
 
 /**
@@ -15,7 +15,7 @@ use Knp\Menu\NodeInterface;
  * @Gedmo\Tree(type="nested")
  * @ORM\HasLifecycleCallbacks
  */
-class Menu implements NodeInterface
+class Menu extends Translatable implements NodeInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -87,7 +87,7 @@ class Menu implements NodeInterface
 
     protected $options = array();
 
-    public function __construct()
+    public function __construct($locales)
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
@@ -95,11 +95,7 @@ class Menu implements NodeInterface
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
 
-        foreach (array('en', 'fr') as $locale) {
-            $translation = new MenuTranslation();
-            $translation->setLocale($locale)->setObject($this);
-            $this->getTranslations()->add($translation);
-        }
+        parent::__construct($locales);
     }
 
     /**
@@ -120,23 +116,6 @@ class Menu implements NodeInterface
         $this->page = $page;
 
         return $this;
-    }
-
-    public function setTranslations($translations)
-    {
-        $this->translations = $translations;
-
-        return $this;
-    }
-
-    public function getTranslations()
-    {
-        return $this->translations;
-    }
-
-    public function getTranslation()
-    {
-        return $this->translations->first();
     }
 
     public function getCreatedAt()
