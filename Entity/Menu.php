@@ -94,6 +94,12 @@ class Menu implements NodeInterface
         $this->enabled = false;
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
+
+        foreach (array('en', 'fr') as $locale) {
+            $translation = new MenuTranslation();
+            $translation->setLocale($locale)->setObject($this);
+            $this->getTranslations()->add($translation);
+        }
     }
 
     /**
@@ -112,15 +118,6 @@ class Menu implements NodeInterface
     public function setPage($page)
     {
         $this->page = $page;
-
-        return $this;
-    }
-
-    public function addTranslation($translation)
-    {
-        $this->translations[] = $translation;
-
-        $translation->setObject($this);
 
         return $this;
     }
