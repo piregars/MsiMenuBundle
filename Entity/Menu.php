@@ -95,7 +95,7 @@ class Menu extends Translatable implements NodeInterface
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
 
-        parent::__construct($locales);
+        $this->createTranslations($locales);
     }
 
     /**
