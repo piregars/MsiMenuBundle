@@ -10,40 +10,40 @@
     </parameters>
     -->
     <services>
-        <!-- Root Manager -->
-        <service id="msi_menu.root_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
+        <!-- MenuRoot Manager -->
+        <service id="msi_menu.menu_root_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
             <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
             <argument type="service" id="session" />
         </service>
-        <!-- Root Admin -->
-        <service id="msi_menu_root_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\RootAdmin">
+        <!-- MenuRoot Admin -->
+        <service id="msi_menu_menu_root_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuRootAdmin">
             <argument />
             <argument>MsiMenuBundle</argument>
             <call method="setModelManager">
-                <argument type="service" id="msi_menu.root_manager" />
+                <argument type="service" id="msi_menu.menu_root_manager" />
             </call>
             <call method="setChild">
-                <argument type="service" id="msi_menu_node_admin" />
+                <argument type="service" id="msi_menu_menu_node_admin" />
             </call>
             <tag name="msi.admin"></tag>
         </service>
 
-        <!-- Node Manager -->
-        <service id="msi_menu.node_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
+        <!-- MenuNode Manager -->
+        <service id="msi_menu.menu_node_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
             <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
             <argument type="service" id="session" />
         </service>
-        <!-- Node Admin -->
-        <service id="msi_menu_node_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\NodeAdmin">
+        <!-- MenuNode Admin -->
+        <service id="msi_menu_menu_node_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuNodeAdmin">
             <argument />
             <argument>MsiMenuBundle</argument>
             <call method="setModelManager">
-                <argument type="service" id="msi_menu.node_manager" />
+                <argument type="service" id="msi_menu.menu_node_manager" />
             </call>
             <call method="setParent">
-                <argument type="service" id="msi_menu_root_admin" />
+                <argument type="service" id="msi_menu_menu_root_admin" />
             </call>
             <tag name="msi.admin"></tag>
         </service>

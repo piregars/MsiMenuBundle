@@ -5,10 +5,7 @@ namespace Msi\Bundle\MenuBundle\Controller;
 use Msi\Bundle\AdminBundle\Controller\CrudController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-class NodeController extends CrudController
+class MenuNodeController extends CrudController
 {
     protected function configureListQuery($qb)
     {
@@ -16,9 +13,6 @@ class NodeController extends CrudController
         $qb->orderBy('a.lft', 'ASC');
     }
 
-    /**
-     * @Route("/{_locale}/admin/msi_menu_node/promote.html", name="admin_msi_menu_node_promote")
-     */
     public function promoteAction()
     {
         $node = $this->admin->getModelManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();
@@ -27,9 +21,6 @@ class NodeController extends CrudController
         return new RedirectResponse($this->admin->genUrl('index'));
     }
 
-    /**
-     * @Route("/{_locale}/admin/msi_menu_node/demote.html", name="admin_msi_menu_node_demote")
-     */
     public function demoteAction()
     {
         $node = $this->admin->getModelManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();

@@ -4,7 +4,7 @@ namespace Msi\Bundle\MenuBundle\Controller;
 
 use Msi\Bundle\AdminBundle\Controller\CrudController;
 
-class RootController extends CrudController
+class MenuRootController extends CrudController
 {
     protected function configureListQuery($qb)
     {

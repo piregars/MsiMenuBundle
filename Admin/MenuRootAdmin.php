@@ -3,13 +3,13 @@
 namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
-use Msi\Bundle\MenuBundle\Form\Type\RootTranslationType;
+use Msi\Bundle\MenuBundle\Form\Type\MenuRootTranslationType;
 
-class RootAdmin extends Admin
+class MenuRootAdmin extends Admin
 {
     public function configure()
     {
-        $this->controller = 'MsiMenuBundle:Root:';
+        $this->controller = 'MsiMenuBundle:MenuRoot:';
         $this->setSearchFields(array('name'));
     }
 
@@ -27,7 +27,7 @@ class RootAdmin extends Admin
     public function buildForm($builder)
     {
         $builder
-            ->add('translations', 'collection', array('label' => ' ', 'type' => new RootTranslationType(), 'options' => array(
+            ->add('translations', 'collection', array('label' => ' ', 'type' => new MenuRootTranslationType(), 'options' => array(
                 'label' => ' ',
             )))
         ;

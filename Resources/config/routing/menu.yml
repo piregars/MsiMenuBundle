@@ -1,0 +1,7 @@
+admin_msi_menu_menu_node_promote:
+    pattern: /{_locale}/admin/menu_node/promote
+    defaults: { _controller: MsiMenuBundle:MenuNode:promote, _admin: msi_menu_menu_node_admin }
+
+admin_msi_menu_menu_node_demote:
+    pattern: /{_locale}/admin/menu_node/demote
+    defaults: { _controller: MsiMenuBundle:MenuNode:demote, _admin: msi_menu_menu_node_admin }

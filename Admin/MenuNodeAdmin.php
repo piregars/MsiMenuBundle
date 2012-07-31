@@ -3,13 +3,13 @@
 namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
-use Msi\Bundle\MenuBundle\Form\Type\NodeTranslationType;
+use Msi\Bundle\MenuBundle\Form\Type\MenuNodeTranslationType;
 
-class NodeAdmin extends Admin
+class MenuNodeAdmin extends Admin
 {
     public function configure()
     {
-        $this->controller = 'MsiMenuBundle:Node:';
+        $this->controller = 'MsiMenuBundle:MenuNode:';
         $this->setSearchFields(array('name'));
     }
 
@@ -32,11 +32,16 @@ class NodeAdmin extends Admin
         if ($this->object->getId()) {
             $qb->andWhere('a.id != :match')->setParameter('match', $this->object->getId());
         }
+        $i = 0;
+        foreach ($this->object->getChildren() as $child) {
+            $qb->andWhere('a.id != :match'.$i)->setParameter('match'.$i, $child->getId());
+            $i++;
+        }
 
         $choices = $qb->getQuery()->execute();
 
         $builder
-            ->add('translations', 'collection', array('label' => ' ', 'type' => new NodeTranslationType(), 'options' => array(
+            ->add('translations', 'collection', array('label' => ' ', 'type' => new MenuNodeTranslationType(), 'options' => array(
                 'label' => ' ',
             )))
             ->add('page', 'entity', array('empty_value' => 'Choose a page', 'class' => 'Msi\Bundle\PageBundle\Entity\Page'))
