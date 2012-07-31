@@ -19,9 +19,7 @@
         <!-- MenuRoot Admin -->
         <service id="msi_menu_menu_root_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuRootAdmin">
             <argument />
-            <call method="setModelManager">
-                <argument type="service" id="msi_menu.menu_root_manager" />
-            </call>
+            <argument type="service" id="msi_menu.menu_root_manager" />
             <call method="setChild">
                 <argument type="service" id="msi_menu_menu_node_admin" />
             </call>
@@ -37,9 +35,7 @@
         <!-- MenuNode Admin -->
         <service id="msi_menu_menu_node_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuNodeAdmin">
             <argument />
-            <call method="setModelManager">
-                <argument type="service" id="msi_menu.menu_node_manager" />
-            </call>
+            <argument type="service" id="msi_menu.menu_node_manager" />
             <call method="setParent">
                 <argument type="service" id="msi_menu_menu_root_admin" />
             </call>
