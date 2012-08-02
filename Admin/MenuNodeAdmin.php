@@ -19,7 +19,7 @@ class MenuNodeAdmin extends Admin
         $builder
             ->add('id')
             ->add('enabled', 'boolean')
-            ->add('name', 'menu')
+            ->add('name', 'tree')
             ->add('route')
             ->add('page')
             ->add('updatedAt', 'date')
