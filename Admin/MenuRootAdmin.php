@@ -13,7 +13,7 @@ class MenuRootAdmin extends Admin
         $this->likeFields = array('name');
     }
 
-    public function buildTable($builder)
+    public function buildIndexTable($builder)
     {
         $builder
             ->add('id')
