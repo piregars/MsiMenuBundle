@@ -4,6 +4,7 @@ namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
 use Msi\Bundle\MenuBundle\Form\Type\MenuNodeTranslationType;
+use Msi\Bundle\MenuBundle\Entity\Menu;
 
 class MenuNodeAdmin extends Admin
 {
@@ -29,13 +30,14 @@ class MenuNodeAdmin extends Admin
     public function buildForm($builder)
     {
         $qb = $this->getModelManager()->findBy(array('a.menu' => $this->container->get('request')->query->get('parentId')), array('a.children' => 'c'), array('a.lvl' => 'ASC', 'a.lft' => 'ASC'));
-        if ($this->object->getId()) {
-            $qb->andWhere('a.id != :match')->setParameter('match', $this->object->getId());
-        }
-        $i = 0;
-        foreach ($this->object->getChildren() as $child) {
-            $qb->andWhere('a.id != :match'.$i)->setParameter('match'.$i, $child->getId());
-            $i++;
+        if ($this->getEntity()->getId()) {
+            $qb->andWhere('a.id != :match')->setParameter('match', $this->getEntity()->getId());
+
+            $i = 0;
+            foreach ($this->getEntity()->getChildren() as $child) {
+                $qb->andWhere('a.id != :match'.$i)->setParameter('match'.$i, $child->getId());
+                $i++;
+            }
         }
 
         $choices = $qb->getQuery()->execute();
