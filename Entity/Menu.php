@@ -144,7 +144,7 @@ class Menu extends Translatable implements NodeInterface
     {
         if ($this->page) {
             if ($this->page->getHome()) {
-                $this->options['route'] = 'homepage';
+                $this->options['route'] = 'msi_page_page_show_home';
             } else {
                 $this->options['route'] = 'msi_page_page_show';
                 $this->options['routeParameters'] = array('slug' => $this->page->getTranslation()->getSlug());
