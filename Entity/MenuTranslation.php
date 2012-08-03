@@ -21,6 +21,7 @@ class MenuTranslation
 
     /**
      * @ORM\Column(nullable=true)
+     * @Assert\NotBlank()
      */
     protected $name;
 

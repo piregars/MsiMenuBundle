@@ -87,15 +87,13 @@ class Menu extends Translatable implements NodeInterface
 
     protected $options = array();
 
-    public function __construct($locales)
+    public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->enabled = false;
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
-
-        $this->createTranslations($locales);
     }
 
     /**
@@ -263,6 +261,6 @@ class Menu extends Translatable implements NodeInterface
 
     public function __toString()
     {
-        return $this->getTranslation()->getName() ?: 'n/a';
+        return $this->getTranslation()->getName();
     }
 }
