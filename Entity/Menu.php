@@ -10,7 +10,7 @@ use Msi\Bundle\AdminBundle\Entity\Translatable;
 use Knp\Menu\NodeInterface;
 
 /**
- * @ORM\Table(name="msi_menu")
+ * @ORM\Table(name="menu")
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * @Gedmo\Tree(type="nested")
  * @ORM\HasLifecycleCallbacks
