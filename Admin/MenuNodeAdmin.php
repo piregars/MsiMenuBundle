@@ -17,10 +17,8 @@ class MenuNodeAdmin extends Admin
     public function buildIndexTable($builder)
     {
         $builder
-            ->add('id')
             ->add('enabled', 'boolean')
             ->add('name', 'tree')
-            ->add('route')
             ->add('page')
             ->add('updatedAt', 'date')
             ->add('', 'action', array('tree' => true))

@@ -16,7 +16,6 @@ class MenuRootAdmin extends Admin
     public function buildIndexTable($builder)
     {
         $builder
-            ->add('id')
             ->add('enabled', 'boolean')
             ->add('name')
             ->add('updatedAt', 'date')
