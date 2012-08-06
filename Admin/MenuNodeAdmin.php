@@ -11,7 +11,7 @@ class MenuNodeAdmin extends Admin
     public function configure()
     {
         $this->controller = 'MsiMenuBundle:MenuNode:';
-        $this->likeFields = array('name');
+        $this->searchFields = array('name');
     }
 
     public function buildIndexTable($builder)

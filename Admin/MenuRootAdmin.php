@@ -10,7 +10,7 @@ class MenuRootAdmin extends Admin
     public function configure()
     {
         $this->controller = 'MsiMenuBundle:MenuRoot:';
-        $this->likeFields = array('name');
+        $this->searchFields = array('name');
     }
 
     public function buildIndexTable($builder)
