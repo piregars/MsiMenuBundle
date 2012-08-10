@@ -26,7 +26,7 @@ class MenuTranslation
     protected $name;
 
     /**
-     * @ORM\Column(nullable="true")
+     * @ORM\Column(nullable=true)
      */
     protected $route;
 
