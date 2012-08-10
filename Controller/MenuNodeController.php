@@ -15,16 +15,16 @@ class MenuNodeController extends CrudController
 
     public function promoteAction()
     {
-        $node = $this->admin->getModelManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();
-        $this->admin->getModelManager()->moveUp($node);
+        $node = $this->admin->getObjectManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();
+        $this->admin->getObjectManager()->moveUp($node);
 
         return new RedirectResponse($this->admin->genUrl('index'));
     }
 
     public function demoteAction()
     {
-        $node = $this->admin->getModelManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();
-        $this->admin->getModelManager()->moveDown($node);
+        $node = $this->admin->getObjectManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();
+        $this->admin->getObjectManager()->moveDown($node);
 
         return new RedirectResponse($this->admin->genUrl('index'));
     }
