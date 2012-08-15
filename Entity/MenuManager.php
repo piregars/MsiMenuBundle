@@ -6,21 +6,21 @@ use Msi\Bundle\AdminBundle\Entity\ObjectManager;
 
 class MenuManager extends ObjectManager
 {
-    public function findRootById($id)
+    public function findRootById($id, $locale)
     {
         $qb = $this->findBy(array('c.enabled' => true, 'a.enabled' => true, 'a.id' => $id), array('a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
 
         $orX = $qb->expr()->orX();
 
         $orX->add($qb->expr()->eq('pt.locale', ':ptlocale'));
-        $qb->setParameter('ptlocale', $this->session->getLocale());
+        $qb->setParameter('ptlocale', $locale);
 
         $orX->add($qb->expr()->isNull('c.page'));
 
         $qb->andWhere($orX);
 
         $qb->andWhere($qb->expr()->eq('ct.locale', ':ctlocale'));
-        $qb->setParameter('ctlocale', $this->session->getLocale());
+        $qb->setParameter('ctlocale', $locale);
 
         return $qb->getQuery()->getSingleResult();
     }
