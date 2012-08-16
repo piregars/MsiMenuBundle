@@ -143,10 +143,8 @@ class Menu extends Translatable implements NodeInterface
     public function getOptions()
     {
         if ($this->page) {
-            if ($this->page->getHome()) {
-                $this->options['route'] = 'msi_page_page_show_home';
-            } else {
-                $this->options['route'] = 'msi_page_page_show';
+            $this->options['route'] = 'msi_page_show';
+            if (!$this->page->getHome()) {
                 $this->options['routeParameters'] = array('slug' => $this->page->getTranslation()->getSlug());
             }
         } else if (preg_match('#^@#', $this->getTranslation()->getRoute())) {
