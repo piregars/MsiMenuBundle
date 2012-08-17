@@ -2,10 +2,10 @@
 
 namespace Msi\Bundle\MenuBundle\Controller;
 
-use Msi\Bundle\AdminBundle\Controller\CrudController;
+use Msi\Bundle\AdminBundle\Controller\AdminController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class MenuNodeController extends CrudController
+class MenuNodeController extends AdminController
 {
     protected function configureListQuery($qb)
     {

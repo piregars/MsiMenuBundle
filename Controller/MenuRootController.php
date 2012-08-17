@@ -2,9 +2,9 @@
 
 namespace Msi\Bundle\MenuBundle\Controller;
 
-use Msi\Bundle\AdminBundle\Controller\CrudController;
+use Msi\Bundle\AdminBundle\Controller\AdminController;
 
-class MenuRootController extends CrudController
+class MenuRootController extends AdminController
 {
     protected function configureListQuery($qb)
     {

@@ -12,9 +12,7 @@
     <services>
         <!-- MenuRoot Manager -->
         <service id="msi_menu.menu_root_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
-            <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
-            <argument type="service" id="session" />
         </service>
         <!-- MenuRoot Admin -->
         <service id="msi_menu_menu_root_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuRootAdmin">
@@ -27,9 +25,7 @@
 
         <!-- MenuNode Manager -->
         <service id="msi_menu.menu_node_manager" class="Msi\Bundle\MenuBundle\Entity\MenuManager">
-            <argument type="service" id="msi_admin.entity_manager" />
             <argument>Msi\Bundle\MenuBundle\Entity\Menu</argument>
-            <argument type="service" id="session" />
         </service>
         <!-- MenuNode Admin -->
         <service id="msi_menu_menu_node_admin" parent="msi_admin.admin" class="Msi\Bundle\MenuBundle\Admin\MenuNodeAdmin">

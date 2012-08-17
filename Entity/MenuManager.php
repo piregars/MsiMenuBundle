@@ -2,9 +2,9 @@
 
 namespace Msi\Bundle\MenuBundle\Entity;
 
-use Msi\Bundle\AdminBundle\Entity\ObjectManager;
+use Msi\Bundle\AdminBundle\Entity\BaseManager;
 
-class MenuManager extends ObjectManager
+class MenuManager extends BaseManager
 {
     public function findRootById($id, $locale)
     {
