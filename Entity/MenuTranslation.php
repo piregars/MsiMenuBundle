@@ -4,7 +4,6 @@ namespace Msi\Bundle\MenuBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="menu_translation", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_object_id_locale", columns={"object_id", "locale"})})
@@ -20,8 +19,7 @@ class MenuTranslation
     protected $id;
 
     /**
-     * @ORM\Column(nullable=true)
-     * @Assert\NotBlank()
+     * @ORM\Column()
      */
     protected $name;
 
@@ -39,11 +37,6 @@ class MenuTranslation
      * @ORM\Column()
      */
     protected $locale;
-
-    public function __construct()
-    {
-        $this->route = '#';
-    }
 
     public function getId()
     {

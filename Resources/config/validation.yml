@@ -1,0 +1,4 @@
+Msi\Bundle\MenuBundle\Entity\MenuTranslation:
+    properties:
+        name:
+            - NotBlank: ~
