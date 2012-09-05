@@ -7,12 +7,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class MenuNodeController extends AdminController
 {
-    protected function configureListQuery($qb)
-    {
-        $qb->andWhere('a.lvl != :lvl')->setParameter('lvl', 0);
-        $qb->orderBy('a.lft', 'ASC');
-    }
-
     public function promoteAction()
     {
         $node = $this->admin->getObjectManager()->findBy(array('a.id' => $this->id))->getQuery()->getOneOrNullResult();

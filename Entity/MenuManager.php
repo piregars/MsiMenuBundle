@@ -3,6 +3,7 @@
 namespace Msi\Bundle\MenuBundle\Entity;
 
 use Msi\Bundle\AdminBundle\Entity\BaseManager;
+use Doctrine\ORM\QueryBuilder;
 
 class MenuManager extends BaseManager
 {
@@ -23,5 +24,15 @@ class MenuManager extends BaseManager
         $qb->setParameter('ctlocale', $locale);
 
         return $qb->getQuery()->getSingleResult();
+    }
+
+    protected function configureAdminListQuery(QueryBuilder $qb)
+    {
+        if (!$qb->getParameter('eqMatch1')) {
+            $qb->andWhere('a.lvl = :lvl')->setParameter('lvl', 0);
+        } else {
+            $qb->andWhere('a.lvl != :lvl')->setParameter('lvl', 0);
+            $qb->orderBy('a.lft', 'ASC');
+        }
     }
 }
