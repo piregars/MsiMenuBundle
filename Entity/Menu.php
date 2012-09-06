@@ -259,6 +259,6 @@ class Menu extends Translatable implements NodeInterface
 
     public function __toString()
     {
-        return $this->getTranslation()->getName() ?: '-';
+        return (string) $this->getTranslation()->getName();
     }
 }

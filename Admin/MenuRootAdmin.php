@@ -7,11 +7,6 @@ use Msi\Bundle\MenuBundle\Form\Type\MenuRootTranslationType;
 
 class MenuRootAdmin extends Admin
 {
-    public function configure()
-    {
-        $this->searchFields = array('t.name');
-    }
-
     public function buildIndexTable($builder)
     {
         $builder

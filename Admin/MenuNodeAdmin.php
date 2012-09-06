@@ -10,8 +10,9 @@ class MenuNodeAdmin extends Admin
 {
     public function configure()
     {
-        $this->controller = 'MsiMenuBundle:MenuNode:';
-        $this->searchFields = array('t.name');
+        $this->options = array(
+            'controller' => 'MsiMenuBundle:MenuNode:',
+        );
     }
 
     public function buildIndexTable($builder)
