@@ -3,8 +3,8 @@
 namespace Msi\Bundle\MenuBundle\Admin;
 
 use Msi\Bundle\AdminBundle\Admin\Admin;
+use Doctrine\ORM\EntityRepository;
 use Msi\Bundle\MenuBundle\Form\Type\MenuNodeTranslationType;
-use Msi\Bundle\MenuBundle\Entity\Menu;
 
 class MenuNodeAdmin extends Admin
 {
@@ -45,7 +45,15 @@ class MenuNodeAdmin extends Admin
             ->add('translations', 'collection', array('label' => ' ', 'type' => new MenuNodeTranslationType(), 'options' => array(
                 'label' => ' ',
             )))
-            ->add('page', 'entity', array('empty_value' => 'Choose a page', 'class' => 'Msi\Bundle\PageBundle\Entity\Page'))
+            ->add('page', 'entity', array(
+                'empty_value' => 'Choose a page',
+                'class' => 'Msi\Bundle\PageBundle\Entity\Page',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->andWhere('a.route IS NULL')
+                    ;
+                },
+            ))
             ->add('parent', 'entity', array(
                 'class' => 'Msi\Bundle\MenuBundle\Entity\Menu',
                 'choices' => $choices,
