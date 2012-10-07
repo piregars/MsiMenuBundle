@@ -8,7 +8,7 @@ class MenuNodeController extends AdminController
 {
     public function promoteAction()
     {
-        $node = $this->admin->getObjectManager()->findBy(array('a.id' => $this->entity->getId()))->getQuery()->getOneOrNullResult();
+        $node = $this->admin->getObjectManager()->getFindByQueryBuilder(array('a.id' => $this->entity->getId()))->getQuery()->getOneOrNullResult();
         $this->admin->getObjectManager()->moveUp($node);
 
         return $this->onSuccess();
@@ -16,7 +16,7 @@ class MenuNodeController extends AdminController
 
     public function demoteAction()
     {
-        $node = $this->admin->getObjectManager()->findBy(array('a.id' => $this->entity->getId()))->getQuery()->getOneOrNullResult();
+        $node = $this->admin->getObjectManager()->getFindByQueryBuilder(array('a.id' => $this->entity->getId()))->getQuery()->getOneOrNullResult();
         $this->admin->getObjectManager()->moveDown($node);
 
         return $this->onSuccess();
