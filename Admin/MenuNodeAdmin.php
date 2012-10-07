@@ -46,7 +46,7 @@ class MenuNodeAdmin extends Admin
                 'label' => ' ',
             )))
             ->add('page', 'entity', array(
-                'empty_value' => 'Choose a page',
+                'empty_value' => '',
                 'class' => 'Msi\Bundle\PageBundle\Entity\Page',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('a')
