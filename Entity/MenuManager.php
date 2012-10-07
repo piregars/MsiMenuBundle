@@ -4,6 +4,7 @@ namespace Msi\Bundle\MenuBundle\Entity;
 
 use Msi\Bundle\AdminBundle\Entity\BaseManager;
 use Doctrine\ORM\QueryBuilder;
+use Msi\Bundle\AdminBundle\Admin\Admin;
 
 class MenuManager extends BaseManager
 {
@@ -45,7 +46,7 @@ class MenuManager extends BaseManager
         return $qb->getQuery()->getSingleResult();
     }
 
-    protected function configureAdminListQuery(QueryBuilder $qb)
+    protected function configureAdminListQuery(QueryBuilder $qb, Admin $admin)
     {
         if (!$qb->getParameter('eqMatch1')) {
             $qb->andWhere('a.lvl = :lvl')->setParameter('lvl', 0);
