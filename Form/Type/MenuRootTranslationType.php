@@ -12,6 +12,7 @@ class MenuRootTranslationType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('published', 'checkbox')
         ;
     }
 

@@ -175,11 +175,6 @@ class Menu extends Translatable implements NodeInterface
         return $this->children;
     }
 
-    public function getName()
-    {
-        return $this->getTranslation()->getName();
-    }
-
     public function getParent()
     {
         return $this->parent;
@@ -202,6 +197,11 @@ class Menu extends Translatable implements NodeInterface
         $this->enabled = $enabled;
 
         return $this;
+    }
+
+    public function getName()
+    {
+        return $this->getTranslation()->getName();
     }
 
     public function getLvl()
