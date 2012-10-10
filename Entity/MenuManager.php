@@ -24,7 +24,7 @@ class MenuManager extends BaseManager
         $qb->andWhere($qb->expr()->eq('ct.locale', ':ctlocale'));
         $qb->setParameter('ctlocale', $locale);
 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     public function findRootByName($name, $locale)
@@ -43,7 +43,7 @@ class MenuManager extends BaseManager
         $qb->andWhere($qb->expr()->eq('ct.locale', ':ctlocale'));
         $qb->setParameter('ctlocale', $locale);
 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     protected function configureAdminListQuery(QueryBuilder $qb, Admin $admin)
