@@ -61,11 +61,6 @@ class Menu extends Translatable implements NodeInterface
     protected $children;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $enabled;
-
-    /**
      * @ORM\Column(type="datetime", name="created_at")
      */
     protected $createdAt;
@@ -91,7 +86,6 @@ class Menu extends Translatable implements NodeInterface
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-        $this->enabled = false;
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
     }
@@ -175,11 +169,6 @@ class Menu extends Translatable implements NodeInterface
         return $this->children;
     }
 
-    public function getName()
-    {
-        return $this->getTranslation()->getName();
-    }
-
     public function getParent()
     {
         return $this->parent;
@@ -192,16 +181,9 @@ class Menu extends Translatable implements NodeInterface
         return $this;
     }
 
-    public function getEnabled()
+    public function getName()
     {
-        return $this->enabled;
-    }
-
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
+        return $this->getTranslation()->getName();
     }
 
     public function getLvl()

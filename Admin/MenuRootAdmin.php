@@ -7,10 +7,16 @@ use Msi\Bundle\MenuBundle\Form\Type\MenuRootTranslationType;
 
 class MenuRootAdmin extends Admin
 {
+    public function configure()
+    {
+        $this->options = array(
+            'controller' => 'MsiMenuBundle:MenuRoot:',
+        );
+    }
+
     public function buildIndexTable($builder)
     {
         $builder
-            ->add('enabled', 'boolean', array('label' => 'status'))
             ->add('name')
             ->add('updatedAt', 'date')
             ->add('', 'action')
