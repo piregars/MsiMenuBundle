@@ -10,7 +10,7 @@ class MenuManager extends BaseManager
 {
     public function findRootById($id, $locale)
     {
-        $qb = $this->getFindByQueryBuilder(array('c.enabled' => true, 'a.enabled' => true, 'a.id' => $id), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
+        $qb = $this->getFindByQueryBuilder(array('ct.published' => true, 't.published' => true, 'a.id' => $id), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
 
         $orX = $qb->expr()->orX();
 
@@ -29,7 +29,7 @@ class MenuManager extends BaseManager
 
     public function findRootByName($name, $locale)
     {
-        $qb = $this->getFindByQueryBuilder(array('c.enabled' => true, 'a.enabled' => true, 't.name' => $name), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
+        $qb = $this->getFindByQueryBuilder(array('ct.published' => true, 't.published' => true, 't.name' => $name), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
 
         $orX = $qb->expr()->orX();
 
