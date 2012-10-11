@@ -41,8 +41,10 @@ class MenuNodeAdmin extends Admin
         }
 
         if ($this->getObject()->getChildren()->count()) {
-            $qb->andWhere('a.lvl = :matchZ')->setParameter('matchZ', $this->getObject()->getLvl() - 1);
+            $qb->andWhere('a.lvl <= :bar')->setParameter('bar', $this->getObject()->getLvl() - 1);
         }
+
+        $qb->andWhere('a.lvl <= :foo')->setParameter('foo', 2);
 
         $choices = $qb->getQuery()->execute();
 
