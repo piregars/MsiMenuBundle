@@ -33,12 +33,15 @@ class MenuNodeAdmin extends Admin
 
         if ($this->getObject()->getId()) {
             $qb->andWhere('a.id != :match')->setParameter('match', $this->getObject()->getId());
-
             $i = 0;
             foreach ($this->getObject()->getChildren() as $child) {
                 $qb->andWhere('a.id != :match'.$i)->setParameter('match'.$i, $child->getId());
                 $i++;
             }
+        }
+
+        if ($this->getObject()->getChildren()->count()) {
+            $qb->andWhere('a.lvl = :matchZ')->setParameter('matchZ', $this->getObject()->getLvl() - 1);
         }
 
         $choices = $qb->getQuery()->execute();
