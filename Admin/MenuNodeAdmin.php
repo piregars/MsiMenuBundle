@@ -26,7 +26,12 @@ class MenuNodeAdmin extends Admin
 
     public function buildForm($builder)
     {
-        $qb = $this->getObjectManager()->getFindByQueryBuilder(array('a.menu' => $this->container->get('request')->query->get('parentId')), array('a.children' => 'c'), array('a.lvl' => 'ASC', 'a.lft' => 'ASC'));
+        $qb = $this->getObjectManager()->getFindByQueryBuilder(
+            array('a.menu' => $this->container->get('request')->query->get('parentId')),
+            array('a.children' => 'c'),
+            array('a.lvl' => 'ASC', 'a.lft' => 'ASC')
+        );
+
         if ($this->getObject()->getId()) {
             $qb->andWhere('a.id != :match')->setParameter('match', $this->getObject()->getId());
 
