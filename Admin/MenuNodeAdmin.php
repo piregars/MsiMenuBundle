@@ -19,7 +19,6 @@ class MenuNodeAdmin extends Admin
     {
         $builder
             ->add('name', 'tree')
-            ->add('page')
             ->add('updatedAt', 'date')
             ->add('', 'action', array('tree' => true))
         ;
