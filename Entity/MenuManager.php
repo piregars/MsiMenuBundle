@@ -10,7 +10,34 @@ class MenuManager extends BaseManager
 {
     public function findRootById($id, $locale)
     {
-        $qb = $this->getFindByQueryBuilder(array('ct.published' => true, 't.published' => true, 'a.id' => $id), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
+        $qb = $this->getFindByQueryBuilder(
+            array('ct.published' => true, 't.published' => true, 'a.id' => $id),
+            array(
+                'a.translations' => 't',
+
+                'a.children' => 'c',
+                'c.translations' => 'ct',
+
+                'c.page' => 'p',
+                'p.translations' => 'pt',
+
+                'c.children' => 'cc',
+                'cc.translations' => 'cct',
+
+                'cc.children' => 'ccc',
+                'ccc.translations' => 'ccct',
+            ),
+            array()
+        );
+        $qb->addSelect('t');
+        $qb->addSelect('c');
+        $qb->addSelect('ct');
+        $qb->addSelect('p');
+        $qb->addSelect('pt');
+        $qb->addSelect('cc');
+        $qb->addSelect('cct');
+        $qb->addSelect('ccc');
+        $qb->addSelect('ccct');
 
         $orX = $qb->expr()->orX();
 
@@ -29,7 +56,34 @@ class MenuManager extends BaseManager
 
     public function findRootByName($name, $locale)
     {
-        $qb = $this->getFindByQueryBuilder(array('ct.published' => true, 't.published' => true, 't.name' => $name), array('a.translations' => 't', 'a.children' => 'c', 'c.translations' => 'ct', 'c.page' => 'p', 'p.translations' => 'pt'), array());
+        $qb = $this->getFindByQueryBuilder(
+            array('ct.published' => true, 't.published' => true, 't.name' => $name),
+            array(
+                'a.translations' => 't',
+
+                'a.children' => 'c',
+                'c.translations' => 'ct',
+
+                'c.page' => 'p',
+                'p.translations' => 'pt',
+
+                'c.children' => 'cc',
+                'cc.translations' => 'cct',
+
+                'cc.children' => 'ccc',
+                'ccc.translations' => 'ccct',
+            ),
+            array()
+        );
+        $qb->addSelect('t');
+        $qb->addSelect('c');
+        $qb->addSelect('ct');
+        $qb->addSelect('p');
+        $qb->addSelect('pt');
+        $qb->addSelect('cc');
+        $qb->addSelect('cct');
+        $qb->addSelect('ccc');
+        $qb->addSelect('ccct');
 
         $orX = $qb->expr()->orX();
 
@@ -44,15 +98,5 @@ class MenuManager extends BaseManager
         $qb->setParameter('ctlocale', $locale);
 
         return $qb->getQuery()->getOneOrNullResult();
-    }
-
-    protected function configureAdminListQuery(QueryBuilder $qb, Admin $admin)
-    {
-        if (!$qb->getParameter('eqMatch1')) {
-            $qb->andWhere('a.lvl = :lvl')->setParameter('lvl', 0);
-        } else {
-            $qb->andWhere('a.lvl != :lvl')->setParameter('lvl', 0);
-            $qb->orderBy('a.lft', 'ASC');
-        }
     }
 }
