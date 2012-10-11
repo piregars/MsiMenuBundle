@@ -87,6 +87,11 @@ class Menu extends Translatable implements NodeInterface
      */
     protected $targetBlank;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isSuperAdmin;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -94,6 +99,19 @@ class Menu extends Translatable implements NodeInterface
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->targetBlank = false;
+        $this->isSuperAdmin = false;
+    }
+
+    public function getIsSuperAdmin()
+    {
+        return $this->isSuperAdmin;
+    }
+
+    public function setIsSuperAdmin($isSuperAdmin)
+    {
+        $this->isSuperAdmin = $isSuperAdmin;
+
+        return $this;
     }
 
     public function getTargetBlank()

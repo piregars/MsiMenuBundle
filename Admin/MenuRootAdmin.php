@@ -16,9 +16,12 @@ class MenuRootAdmin extends Admin
 
     public function buildIndexTable($builder)
     {
+        if ($this->getContainer()->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+            $builder->add('isSuperAdmin', 'boolean');
+        }
+
         $builder
             ->add('name')
-            ->add('updatedAt', 'date')
             ->add('', 'action')
         ;
     }

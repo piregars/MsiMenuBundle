@@ -27,5 +27,8 @@ class MenuNodeController extends AdminController
     {
         $qb->andWhere('a.lvl != :lvl')->setParameter('lvl', 0);
         $qb->orderBy('a.lft', 'ASC');
+        $qb->leftJoin('a.translations', 't');
+        $qb->leftJoin('a.children', 'c');
+        $qb->leftJoin('c.translations', 'ct');
     }
 }
