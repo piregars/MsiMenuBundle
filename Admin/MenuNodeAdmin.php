@@ -57,6 +57,7 @@ class MenuNodeAdmin extends Admin
                 'class' => 'Msi\Bundle\MenuBundle\Entity\Menu',
                 'choices' => $choices,
             ))
+            ->add('targetBlank', 'checkbox')
         ;
     }
 }
