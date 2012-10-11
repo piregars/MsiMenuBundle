@@ -82,12 +82,30 @@ class Menu extends Translatable implements NodeInterface
 
     protected $options = array();
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $targetBlank;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->translations = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->targetBlank = false;
+    }
+
+    public function getTargetBlank()
+    {
+        return $this->targetBlank;
+    }
+
+    public function setTargetBlank($targetBlank)
+    {
+        $this->targetBlank = $targetBlank;
+
+        return $this;
     }
 
     /**
@@ -147,6 +165,10 @@ class Menu extends Translatable implements NodeInterface
             $this->options['uri'] = $this->getTranslation()->getRoute();
         } else {
             $this->options['uri'] = '#';
+        }
+
+        if ($this->targetBlank) {
+            $this->options['linkAttributes'] = array('target' => '_blank');
         }
 
         return $this->options;
