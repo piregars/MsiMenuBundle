@@ -29,15 +29,15 @@ class MenuManager extends BaseManager
             ),
             array()
         );
-        $qb->addSelect('t');
-        $qb->addSelect('c');
-        $qb->addSelect('ct');
-        $qb->addSelect('p');
-        $qb->addSelect('pt');
-        $qb->addSelect('cc');
-        $qb->addSelect('cct');
-        $qb->addSelect('ccc');
-        $qb->addSelect('ccct');
+        // $qb->addSelect('t');
+        // $qb->addSelect('c');
+        // $qb->addSelect('ct');
+        // $qb->addSelect('p');
+        // $qb->addSelect('pt');
+        // $qb->addSelect('cc');
+        // $qb->addSelect('cct');
+        // $qb->addSelect('ccc');
+        // $qb->addSelect('ccct');
 
         $orX = $qb->expr()->orX();
 
@@ -75,15 +75,15 @@ class MenuManager extends BaseManager
             ),
             array()
         );
-        $qb->addSelect('t');
-        $qb->addSelect('c');
-        $qb->addSelect('ct');
-        $qb->addSelect('p');
-        $qb->addSelect('pt');
-        $qb->addSelect('cc');
-        $qb->addSelect('cct');
-        $qb->addSelect('ccc');
-        $qb->addSelect('ccct');
+        // $qb->addSelect('t');
+        // $qb->addSelect('c');
+        // $qb->addSelect('ct');
+        // $qb->addSelect('p');
+        // $qb->addSelect('pt');
+        // $qb->addSelect('cc');
+        // $qb->addSelect('cct');
+        // $qb->addSelect('ccc');
+        // $qb->addSelect('ccct');
 
         $orX = $qb->expr()->orX();
 
